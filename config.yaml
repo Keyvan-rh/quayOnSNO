@@ -1,0 +1,27 @@
+AUTHENTICATION_TYPE: Database
+SERVER_HOSTNAME: <URL you want to use to access quay sample: reg.apps.xxx.xxxx.xxx>
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_PROXY_CACHE: true
+DEFAULT_TAG_EXPIRATION: 2w
+FEATURE_UI_V2: true
+FEATURE_SUPERUSERS_FULL_ACCESS: true
+FEATURE_AUTO_PRUNE: true
+FEATURE_BUILD_SUPPORT: true
+SUPER_USERS:
+  - quayadmin
+DISTRIBUTED_STORAGE_CONFIG:
+    default:
+        - LocalStorage
+        - storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - default
+PREFERRED_URL_SCHEME: https
+SETUP_COMPLETE: true
+TAG_EXPIRATION_OPTIONS:
+    - 0s
+    - 1d
+    - 1w
+    - 2w
+    - 4w
+

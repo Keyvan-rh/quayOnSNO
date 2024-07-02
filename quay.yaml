@@ -1,0 +1,46 @@
+apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: qsno1
+  namespace: quay
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: objectstorage
+      managed: false
+    - managed: true
+      kind: clair
+      overrides:
+        resources:
+          limits:
+            cpu: "4"    # Limiting to 4 CPU
+            memory: "4Gi"   # Limiting to 10 Gibibytes of memory
+          requests:
+            cpu: "2"   # Requesting 4 CPU
+            memory: "4Gi"   # Requesting 10 Gibi of memory
+        replicas: 1
+    - managed: true
+      kind: postgres
+    - managed: true
+      kind: redis
+    - managed: false
+      kind: horizontalpodautoscaler
+    - managed: true
+      kind: route
+    - managed: true
+      kind: mirror
+    - managed: true
+      kind: monitoring
+    - managed: true
+      kind: tls
+    - overrides:
+        resources:
+          limits:
+            cpu: "4"    # Limiting to 4 CPU
+          requests:
+            cpu: "4"   # Requesting 4 CPU
+        replicas: 1
+      managed: true
+      kind: quay
+    - managed: true
+      kind: clairpostgres

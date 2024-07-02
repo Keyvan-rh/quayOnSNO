@@ -1,0 +1,37 @@
+apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: lab
+  namespace: quay
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: objectstorage
+      managed: false
+    - managed: true
+      kind: clair
+      overrides:
+        replicas: 1
+    - managed: true
+      kind: postgres
+    - managed: true
+      kind: redis
+    - managed: false
+      kind: horizontalpodautoscaler
+    - managed: true
+      kind: route
+    - managed: false
+      kind: mirror
+    - managed: false
+      kind: monitoring
+    - managed: true
+      kind: tls
+    - overrides:
+        env:
+          - name: DEBUGLOG
+            value: 'true'
+        replicas: 1
+      managed: true
+      kind: quay
+    - managed: true
+      kind: clairpostgres
