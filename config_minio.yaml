@@ -1,0 +1,34 @@
+AUTHENTICATION_TYPE: Database
+SERVER_HOSTNAME: <URI taht you want to use to access quay sample: quay.apps.sno.example.com>
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_PROXY_CACHE: true
+DEFAULT_TAG_EXPIRATION: 2w
+FEATURE_UI_V2: true
+FEATURE_SUPERUSERS_FULL_ACCESS: true
+FEATURE_AUTO_PRUNE: true
+FEATURE_BUILD_SUPPORT: true
+SUPER_USERS:
+  - quayadmin
+DISTRIBUTED_STORAGE_CONFIG:
+    radosGWStorage:
+        - RadosGWStorage
+        - hostname: < server name OR THE IP OF the minio (external s3 compatible server) >
+          port: <API port number for minio the default value is 9000>
+          access_key: <create a access key and add the key here>
+          bucket_name: <bucket name>
+          secret_key: < secret key for the access key>
+          is_secure: false
+          storage_path: /datastorage/registry
+          maximum_chunk_size_mb: 100
+          server_side_assembly: true
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - radosGWStorage
+PREFERRED_URL_SCHEME: https
+SETUP_COMPLETE: true
+TAG_EXPIRATION_OPTIONS:
+    - 0s
+    - 1d
+    - 1w
+    - 2w
+    - 4w
